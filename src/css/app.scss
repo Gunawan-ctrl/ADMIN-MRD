@@ -1,0 +1,20 @@
+// app global css in SCSS form
+@font-face {
+  font-family: nunito;
+  src: url(./../../public/font/Nunito-Black.ttf);
+}
+
+@font-face {
+  font-family: nunito_italic;
+  src: url(./../../public/font/Nunito-BlackItalic.ttf);
+}
+
+@font-face {
+  font-family: nunito_bold;
+  src: url(./../../public/font/Nunito-Bold.ttf);
+}
+
+@font-face {
+  font-family: nunito_bold_italic;
+  src: url(./../../public/font/Nunito-BoldItalic.ttf);
+}
