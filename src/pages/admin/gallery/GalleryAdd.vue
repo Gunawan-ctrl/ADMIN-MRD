@@ -29,11 +29,30 @@
             <q-form @submit="onSubmit">
               <q-card-section horizontal>
                 <q-card-section class="q-gutter-md fit">
+                  <!-- <q-uploader
+                    label="Auto Uploader"
+                    auto-upload
+                    :url="getUrl"
+                    multiple
+                  /> -->
                   <q-badge class="q-pa-sm" color="primary">Upload Photo</q-badge>
-                  <q-file class="q-mr-xs" v-model="PHOTO" dense />
-                  <div id="preview">
-                    <q-img v-if="url" :src="url" style="border-radius: 10px;" />
+                  <div>
+                    <q-file label="Pick file" accept=".jpg, .png, .jpeg" name="poster_file" class="q-mr-xs" v-model="PHOTO" dense outlined>
+                      <template v-slot:prepend>
+                        <q-icon name="attach_file" />
+                      </template>
+                    </q-file>
                   </div>
+                  <!-- <div>
+                    <q-img
+                      :src="imageUrl"
+                      spinner-color="white"
+                      style="height: 140px; max-width: 150px"
+                    />
+                  </div> -->
+                  <!-- <div id="preview">
+                    <q-img v-if="url" :src="url" style="border-radius: 10px;" />
+                  </div> -->
                 </q-card-section>
                 <q-separator vertical />
                 <q-card-section class="q-gutter-md fit">
@@ -70,6 +89,22 @@
             <div class="col-4">
               <lottie style='width: 80px; margin-left: 10px; margin-top: -0px;' :options="defaultOptions"/>
             </div>
+            <!-- <q-card v-if="submitEmpty" flat bordered class="q-mt-md bg-grey-2">
+              <q-card-section>
+                Submitted form contains empty formData.
+              </q-card-section>
+            </q-card>
+            <q-card v-else-if="submitResult.length > 0" flat bordered class="q-mt-md bg-grey-2">
+              <q-card-section>Submitted form contains the following formData (key = value):</q-card-section>
+              <q-separator />
+              <q-card-section class="row q-gutter-sm items-center">
+                <div
+                  v-for="(item, index) in submitResult"
+                  :key="index"
+                  class="q-px-sm q-py-xs bg-grey-8 text-white rounded-borders text-center text-no-wrap"
+                >{{ item.name }} = {{ item.value }}</div>
+              </q-card-section>
+            </q-card> -->
           </div>
         </div>
       </div>
@@ -78,8 +113,13 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import Lottie from './../../../components/lottie.vue'
 import * as animationData from './../../../../public/images/lottie/gallery.json'
+import JSFtp from 'jsftp'
+
+const submitEmpty = ref(false)
+const submitResult = []
 
 // const model = () => {
 //   return {
@@ -102,34 +142,63 @@ export default {
       PHOTO: null,
       ACTIVITY: null,
       DESCRIPTION: null,
+      POST_BY: 'Administrator',
+      submitEmpty,
+      submitResult
       // form: model()
     }
   },
+  mounted() {
+    this.ftp = new JSFtp({
+      host: '102.167.112.188',
+      port: 21,
+      user: 'blits',
+      pass: 'Bl1t5'
+    })
+  },
   methods: {
-    onFileChange(event) {
-      const file = event.target.value[0];
-      this.url = URL.createObjectURL(file);
-      console.log(this.url + '.png')
+    onSubmit(evt) {
+      this.onCreate(evt)
     },
-    onSubmit() {
-      this.onCreate();
-    },
-    onCreate() {
-      // this.$q.loading.show();
-      this.$axios
-        .post("gallery/create", {
-          PHOTO: this.PHOTO,
-          ACTIVITY: this.ACTIVITY,
-          DESCRIPTION: this.DESCRIPTION,
-          POST_BY: this.POST_BY
-         })
-        .then((response) => {
-          // if (!this.$parseResponse(response.data)) {
-            // this.$router.push({ name: "all-dosen" });
-            console.log(response)
-          // }
-        })
-        .catch();
+    async onCreate(evt) {
+      const formData = new FormData(evt.target)
+      const data = []
+      const date = new Date()
+
+      let day = date.getDate()
+      let month = date.getMonth() + 1
+      let year = date.getFullYear()
+
+      let h = date.getHours()
+      let m = date.getMinutes()
+      let s = date.getSeconds()
+      let ms = date.getMilliseconds()
+      let time = h + ":" + m + ":" + s + ":" + ms
+      let currentDate = `${day}${month}${year}`
+
+      for (const [ name, value ] of formData.entries()) {
+        if (value.name.length > 0) {
+          data.push({
+            name,
+            value: currentDate + '-' + time + '-' + value.name
+          })
+        }
+      }
+      submitResult.value = data
+      submitEmpty.value = data.length === 0
+
+      // console.log(submitResult.value[0].value)
+
+      const localFilePath = submitResult.value[0].value
+      const remoteFilePath = '/upload'
+
+      this.ftp.put(localFilePath, remoteFilePath, (err) => {
+        if (err) {
+          console.error(err)
+        } else {
+          console.log('File uploaded successfully!')
+        }
+      })
     }
   }
 }

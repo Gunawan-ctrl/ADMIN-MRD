@@ -68,13 +68,13 @@
       v-model="leftDrawerOpen"
       show-if-above
     >
-      <q-card class="my-card q-ma-sm flex text-indigo-10 text-subtitle2" style="height:130px; background-image: url('header-bg.png'); background-repeat: no-repeat; background-size: cover;">
+      <q-card class="my-card q-ma-sm flex text-indigo-10 text-subtitle2" style="height:130px; background-repeat: no-repeat; background-size: cover;">
         <q-item>
           <q-item-section avatar>
             <q-avatar
               size="70px"
               class="overlapping">
-              <img src="ICON.png" style="width: 70px;">
+              <img src="images/icons/icon.png" style="width: 70px;">
             </q-avatar>
           </q-item-section>
 
@@ -236,7 +236,7 @@
       <q-card class="my-card q-ma-sm q-mt-md flex text-indigo-10 text-subtitle2" style="height:70px; background-repeat: no-repeat; background-size: cover;">
         <q-item>
           <q-item-section avatar>
-            <img src="ICON_TEXT.png" style="width: 50px;">
+            <img src="images/icons/icon-text.png" style="width: 50px;">
           </q-item-section>
 
           <q-item-section>
