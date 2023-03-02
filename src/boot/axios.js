@@ -1,5 +1,5 @@
-import { boot } from 'quasar/wrappers'
-import axios from 'axios'
+import { boot } from "quasar/wrappers";
+import axios from "axios";
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -8,12 +8,13 @@ import axios from 'axios'
 // "export default () => {}" function below (which runs individually
 // for each client)
 
-const baseURL = 'http://127.0.0.1:5069/'
+// const baseURL = "http://192.168.18.3:5069/";
+const baseURL = "http://localhost:3000/";
 
-const api = axios.create({ baseURL: baseURL })
+const api = axios.create({ baseURL: baseURL });
 
 export default boot(({ app }) => {
-  app.config.globalProperties.$axios = api
-})
+  app.config.globalProperties.$axios = api;
+});
 
-export { api }
+export { api };

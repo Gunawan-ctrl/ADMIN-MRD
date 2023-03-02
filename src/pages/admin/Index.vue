@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-intersection
-      style="max-width: 100%; width: 100%;"
+      style="max-width: 100%; width: 100%"
       transition="slide-down"
       class="example-item"
     >
@@ -24,7 +24,9 @@
                   <q-item-label class="text-center"
                     ><strong>69</strong>
                   </q-item-label>
-                  <q-item-label class="text-center" caption> Produk </q-item-label>
+                  <q-item-label class="text-center" caption>
+                    Produk
+                  </q-item-label>
                 </q-item-section>
                 <q-item-section>
                   <q-item-label class="text-center"
@@ -64,7 +66,9 @@
                   <q-item-label class="text-center"
                     ><strong>69</strong>
                   </q-item-label>
-                  <q-item-label class="text-center" caption> Galery </q-item-label>
+                  <q-item-label class="text-center" caption>
+                    Galery
+                  </q-item-label>
                 </q-item-section>
                 <q-item-section>
                   <q-item-label class="text-center"
@@ -102,18 +106,32 @@
                 @mouseleave="autoplay = true"
                 height="162px"
               >
-                <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-                <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-                <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-                <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+                <q-carousel-slide
+                  :name="1"
+                  img-src="https://cdn.quasar.dev/img/mountains.jpg"
+                />
+                <q-carousel-slide
+                  :name="2"
+                  img-src="https://cdn.quasar.dev/img/mountains.jpg"
+                />
+                <q-carousel-slide
+                  :name="3"
+                  img-src="https://cdn.quasar.dev/img/parallax2.jpg"
+                />
+                <q-carousel-slide
+                  :name="4"
+                  img-src="https://cdn.quasar.dev/img/quasar.jpg"
+                />
                 <template v-slot:control>
                   <q-carousel-control
                     position="top-right"
                     :offset="[18, 18]"
                     class="text-white rounded-borders"
-                    style="background: rgba(0, 0, 0, .3); padding: 0px 0px;"
+                    style="background: rgba(0, 0, 0, 0.3); padding: 0px 0px"
                   >
-                    <q-btn class="col" color="white" flat size="sm">Detail</q-btn>
+                    <q-btn class="col" color="white" flat size="sm"
+                      >Detail</q-btn
+                    >
                   </q-carousel-control>
                 </template>
               </q-carousel>
@@ -130,7 +148,7 @@
             </q-toolbar>
             <q-card class="my-card">
               <q-table
-                :data="data"
+                :rows="data"
                 :columns="columns"
                 row-key="name"
                 :filter="filter"
@@ -138,7 +156,13 @@
                 <template v-slot:top>
                   <div class="text-weight-bold text-subtitle1">Data Produk</div>
                   <q-space />
-                  <q-input outline dense debounce="300" v-model="filter" placeholder="Pencarian">
+                  <q-input
+                    outline
+                    dense
+                    debounce="300"
+                    v-model="filter"
+                    placeholder="Pencarian"
+                  >
                     <template v-slot:append>
                       <q-icon name="search" />
                     </template>
@@ -178,8 +202,10 @@
                     </q-td>
                     <q-td key="action" :props="props">
                       <div class="justify-center q-gutter-x-xs">
-                        <q-btn color="teal"
-                          dense size="sm"
+                        <q-btn
+                          color="teal"
+                          dense
+                          size="sm"
                           class="q-px-xs"
                           icon="edit"
                           @click="editProduk(props.row.GUID)"
@@ -206,10 +232,12 @@
               >
               <q-btn flat text-color="light-blue-8" label="Show All"></q-btn>
             </q-toolbar>
-            <q-card class="my-card bg-indigo-6 flex text-indigo-10 text-subtitle2">
+            <q-card
+              class="my-card bg-indigo-6 flex text-indigo-10 text-subtitle2"
+            >
               <q-card-section>
                 <q-avatar size="40px">
-                  <img src="report.png">
+                  <img src="report.png" />
                 </q-avatar>
               </q-card-section>
               <q-card-section>
@@ -225,10 +253,12 @@
                 />
               </q-item-section>
             </q-card>
-            <q-card class="my-card bg-cyan-6 flex text-indigo-10 text-subtitle2 q-mt-sm">
+            <q-card
+              class="my-card bg-cyan-6 flex text-indigo-10 text-subtitle2 q-mt-sm"
+            >
               <q-card-section>
                 <q-avatar size="40px">
-                  <img src="form.png">
+                  <img src="form.png" />
                 </q-avatar>
               </q-card-section>
               <q-card-section>
@@ -247,15 +277,21 @@
             <q-card class="my-card q-mt-sm">
               <q-card-section>
                 <div class="text-subtitle2 text-indigo-10">Statistic Data</div>
-                <div class="text-caption text-grey">Data stastistik pelaporan pengguna</div>
+                <div class="text-caption text-grey">
+                  Data stastistik pelaporan pengguna
+                </div>
               </q-card-section>
               <q-card-section>
                 <div class="text-subtitle2 text-indigo-10">Statistic Data</div>
-                <div class="text-caption text-grey">Data stastistik pelaporan pengguna</div>
+                <div class="text-caption text-grey">
+                  Data stastistik pelaporan pengguna
+                </div>
               </q-card-section>
               <q-card-section>
                 <div class="text-subtitle2 text-indigo-10">Statistic Data</div>
-                <div class="text-caption text-grey">Data stastistik pelaporan pengguna</div>
+                <div class="text-caption text-grey">
+                  Data stastistik pelaporan pengguna
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -270,62 +306,71 @@
 // import * as animationData from './../../public/kategoris.json'
 // import LineChart from './../components/Line.vue'
 
-
 export default {
-  name: 'PageIndex',
+  name: "PageIndex",
   components: {
     // lottie: Lottie,
     // LineChart
   },
-  data () {
+  data() {
     return {
-      filter: '',
+      filter: "",
       columns: [
         {
-          name: 'namaBarang',
+          name: "namaBarang",
           required: true,
-          label: 'Nama Barang',
-          align: 'left',
-          field: row => row.namaBarang,
-          format: val => `${val}`
+          label: "Nama Barang",
+          align: "left",
+          field: (row) => row.namaBarang,
+          format: (val) => `${val}`,
         },
-        { name: 'kategori', align: 'center', label: 'Kategori', field: 'kategori' },
-        { name: 'gambar', label: 'Gambar', field: 'gambar' },
-        { name: 'deskripsi', align: 'center', label: 'Deskripsi', field: 'deskripsi' },
-        { name: 'action', align: 'center', label: 'Action', field: 'action' },
+        {
+          name: "kategori",
+          align: "center",
+          label: "Kategori",
+          field: "kategori",
+        },
+        { name: "gambar", label: "Gambar", field: "gambar" },
+        {
+          name: "deskripsi",
+          align: "center",
+          label: "Deskripsi",
+          field: "deskripsi",
+        },
+        { name: "action", align: "center", label: "Action", field: "action" },
       ],
 
       data: [
         {
-          namaBarang: 'Smart Watering',
-          kategori: 'Internet Of Things',
+          namaBarang: "Smart Watering",
+          kategori: "Internet Of Things",
           gambar: 6.0,
           deskripsi: 24,
           action: 4.0,
         },
         {
-          namaBarang: 'Absensi',
+          namaBarang: "Absensi",
           kategori: 159,
           gambar: 6.0,
           deskripsi: 24,
           action: 4.0,
         },
         {
-          namaBarang: 'Web Aplication',
+          namaBarang: "Web Aplication",
           kategori: 159,
           gambar: 6.0,
           deskripsi: 24,
           action: 4.0,
         },
         {
-          namaBarang: 'Frozen Yogurt',
+          namaBarang: "Frozen Yogurt",
           kategori: 159,
           gambar: 6.0,
           deskripsi: 24,
           action: 4.0,
         },
         {
-          namaBarang: 'Frozen Yogurt',
+          namaBarang: "Frozen Yogurt",
           kategori: 159,
           gambar: 6.0,
           deskripsi: 24,
@@ -336,10 +381,10 @@ export default {
       autoplay: true,
       // defaultOptions: { animationData: animationData.default },
       // animationSpeed: 2,
-    }
+    };
   },
-  methods: {}
-}
+  methods: {},
+};
 </script>
 
 <style lang="sass" scoped>
